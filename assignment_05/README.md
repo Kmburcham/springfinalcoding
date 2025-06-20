@@ -13,10 +13,11 @@ through the quiz called *Machine Learning Model Evaluation*.
 
 ## Names of Team Members:
 
-1. Name
-2. Name
-3. Name
-4. Name
+1. Kaylei Burcham
+2. Chloe Schumacher
+3. Zahria Scott
+4. Jair Jackson
+
 
 
 ## Instructions
