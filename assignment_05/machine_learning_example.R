@@ -356,51 +356,7 @@ purchases_full %>%
 # Fourth model predicts purchases using random forest.
 #-------------------------------------------------
 
-model_xgb <-
-  boost_tree(trees = 100,
-             min_n = 5,
-             tree_depth = 2,
-             learn_rate = 0.1,
-             loss_reduction = 0.1,
-             sample_size = 0.4) %>%
-  set_mode("regression") %>%
-  set_engine("xgboost")
-
-
-# Define model workflow.
-model_wflow_xgb <- 
-  workflow() %>% 
-  add_model(model_xgb) %>% 
-  add_recipe(model_recipe_purch)
-
-# Fit the model to the training data.
-model_fit_xgb <- 
-  model_wflow_xgb %>% 
-  fit(data = purchases_full)
-
-# Join predictions and rename for this model.
-purchases_full <- model_fit_xgb %>% 
-  predict(purchases_full) %>%
-  bind_cols(purchases_full) %>%
-  mutate(
-    pred_xgb = .pred, 
-    error_xgb = pred_xgb - purchases
-  ) %>%
-  select(-c(.pred))
-
-summary(purchases_full)
-
-
-# Calculate MAE on predictions
-purchases_full %>%
-  group_by(year) %>%
-  summarize(
-    MAE_lm_purch = mean(abs(error_lm_purch)), 
-    MAE_lm_util = mean(abs(error_lm_purch_util)), 
-    MAE_xgb = mean(abs(error_xgb))
-  )
-
-
+in
 ##################################################
 # Calculate MAE to Compare Models Across Samples
 ##################################################

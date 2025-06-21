@@ -76,7 +76,7 @@ evaluate_models <- function(df) {
 }
 
 # Evaluate on each year and print MAEs
-for (yr in c(2022, 2023, 2024)) 
+for (yr in c(2022, 2023, 2024)) {
   df <- purchases_full[purchases_full$year == yr, ]
   df <- evaluate_models(df)
   
@@ -88,7 +88,9 @@ for (yr in c(2022, 2023, 2024))
     MAE_RF = mean(abs(df$error_rf), na.rm = TRUE),
     MAE_XGB = mean(abs(df$error_xgb), na.rm = TRUE)
   )
+  
   print(mae_result)
+}
 
 ##################################################
 # End
